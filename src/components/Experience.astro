@@ -1,0 +1,175 @@
+---
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="experience section" id="experience">
+  <div class="container">
+    <h2 class="section-title reveal">{t.experience.title}</h2>
+    
+    <div class="timeline">
+      {t.experience.jobs.map((job: any, index: number) => (
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass">
+            <div class="job-header">
+              <div>
+                <h3 class="job-position">{job.position}</h3>
+                <h4 class="job-company gradient-text">{job.company}</h4>
+              </div>
+              <div class="job-meta">
+                <span class="job-period">{job.period}</span>
+                <span class="job-location">{job.location}</span>
+              </div>
+            </div>
+            
+            <ul class="achievements-list">
+              {job.achievements.map((achievement: string) => (
+                <li>{achievement}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience {
+    background: var(--color-bg-primary);
+  }
+  
+  .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: var(--space-xl);
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-primary);
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .timeline-marker {
+    position: absolute;
+    left: calc(-1 * var(--space-xl) - 8px);
+    top: 8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-accent-primary);
+    border: 3px solid var(--color-bg-primary);
+    box-shadow: 0 0 0 4px var(--color-accent-primary);
+    z-index: 1;
+  }
+  
+  .timeline-content {
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-base);
+  }
+  
+  .timeline-content:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-md);
+    gap: var(--space-md);
+  }
+  
+  .job-position {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .job-company {
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+  
+  .job-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    text-align: right;
+  }
+  
+  .job-period {
+    font-size: var(--text-sm);
+    color: var(--color-accent-primary);
+    font-weight: 600;
+  }
+  
+  .job-location {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+  
+  .achievements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .achievements-list li {
+    position: relative;
+    padding-left: var(--space-md);
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  
+  .achievements-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-primary);
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .timeline {
+      padding-left: var(--space-md);
+    }
+    
+    .timeline-marker {
+      left: calc(-1 * var(--space-md) - 8px);
+    }
+    
+    .job-header {
+      flex-direction: column;
+    }
+    
+    .job-meta {
+      align-items: flex-start;
+      text-align: left;
+    }
+    
+    .timeline-content:hover {
+      transform: translateX(0);
+    }
+  }
+</style>

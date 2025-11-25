@@ -1,0 +1,97 @@
+---
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="education section" id="education">
+  <div class="container">
+    <h2 class="section-title reveal">{t.education.title}</h2>
+    
+    <div class="education-content reveal">
+      <div class="education-card glass">
+        <div class="education-header">
+          <h3 class="degree-name gradient-text">{t.education.degree}</h3>
+          <span class="education-period">{t.education.period}</span>
+        </div>
+        
+        <h4 class="institution-name">{t.education.institution}</h4>
+        <p class="education-location">{t.education.location}</p>
+        
+        <p class="education-description">{t.education.description}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .education {
+    background: var(--color-bg-primary);
+  }
+  
+  .education-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .education-card {
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-base);
+  }
+  
+  .education-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-md);
+    gap: var(--space-md);
+  }
+  
+  .degree-name {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+  }
+  
+  .education-period {
+    font-size: var(--text-sm);
+    color: var(--color-accent-primary);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  
+  .institution-name {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .education-location {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-md);
+  }
+  
+  .education-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .education-header {
+      flex-direction: column;
+    }
+    
+    .education-period {
+      white-space: normal;
+    }
+  }
+</style>

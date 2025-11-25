@@ -1,0 +1,116 @@
+---
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="about section" id="about">
+  <div class="container">
+    <h2 class="section-title reveal">{t.about.title}</h2>
+    
+    <div class="about-content">
+      <div class="about-text reveal">
+        <p class="about-summary">{t.about.summary}</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-card glass reveal">
+          <div class="stat-value gradient-text">{t.about.stats.experience}</div>
+          <div class="stat-label">{t.about.stats.experienceLabel}</div>
+        </div>
+        
+        <div class="stat-card glass reveal">
+          <div class="stat-value gradient-text">{t.about.stats.projects}</div>
+          <div class="stat-label">{t.about.stats.projectsLabel}</div>
+        </div>
+        
+        <div class="stat-card glass reveal">
+          <div class="stat-value gradient-text">{t.about.stats.performance}</div>
+          <div class="stat-label">{t.about.stats.performanceLabel}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-bg-secondary);
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg);
+  }
+  
+  .about-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .about-text {
+    margin-bottom: var(--space-2xl);
+  }
+  
+  .about-summary {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    text-align: center;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+  
+  .stat-card {
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    transition: all var(--transition-base);
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .stat-value {
+    font-size: var(--text-4xl);
+    font-weight: 900;
+    font-family: var(--font-display);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .stat-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

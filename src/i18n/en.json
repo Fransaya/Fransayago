@@ -1,0 +1,171 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "certifications": "Certifications",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Francisco Enrique Sayago",
+    "title": "Full Stack Developer",
+    "subtitle": "Building scalable, high-performance web applications",
+    "cta": {
+      "contact": "Contact Me",
+      "resume": "View Resume"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "summary": "Full Stack Developer with over 2 years of experience creating scalable web applications. Specialized in building high-performance APIs with Node.js and modern interfaces with React and Next.js. Strong experience in database optimization, microservices architecture, and Docker deployments. Integrated AI solutions (ChatGPT) to automate processes and improve operational efficiency.",
+    "stats": {
+      "experience": "2+ Years",
+      "experienceLabel": "Experience",
+      "projects": "15+",
+      "projectsLabel": "Projects",
+      "performance": "40%",
+      "performanceLabel": "Performance Boost"
+    }
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "jobs": [
+      {
+        "company": "Omnia",
+        "position": "Full Stack Developer",
+        "period": "Jan 2024 - Nov 2025",
+        "location": "Córdoba, Argentina",
+        "achievements": [
+          "Technical leadership and software solution development",
+          "Design and architecture of E-commerce platforms with Next.js and Node.js microservices",
+          "40% reduction in API latency, supporting +3,000 requests per hour",
+          "Optimization of PostgreSQL and MongoDB queries, achieving +35% performance improvement",
+          "Implementation of ChatGPT automations, reducing operational times by 30%"
+        ]
+      },
+      {
+        "company": "Maser Informática",
+        "position": "Backend Developer",
+        "period": "Oct 2023 - Jun 2025",
+        "location": "Córdoba, Argentina",
+        "achievements": [
+          "Optimization of high-traffic E-commerce systems",
+          "Refactoring of Node.js endpoints to improve performance during peak loads",
+          "SQL query improvements, increasing scalability by 35%",
+          "Application of MVC patterns and SOLID principles in backend development"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "items": [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "JavaScript",
+          "HTML5",
+          "CSS3",
+          "TailwindCSS"
+        ]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": ["Node.js", "Express.js", "Nest.js", "REST APIs", "GraphQL"]
+      },
+      "database": {
+        "title": "Databases",
+        "items": [
+          "PostgreSQL",
+          "MongoDB",
+          "MySQL",
+          "Supabase",
+          "Redis",
+          "Prisma"
+        ]
+      },
+      "tools": {
+        "title": "Tools",
+        "items": ["Docker", "Git", "GitHub", "Postman", "SCRUM"]
+      },
+      "ai": {
+        "title": "Artificial Intelligence",
+        "items": ["ChatGPT API", "Claude API", "LLMs"]
+      },
+      "principles": {
+        "title": "Principles",
+        "items": ["SOLID", "MVC", "Microservices"]
+      }
+    },
+    "languages": {
+      "title": "Languages",
+      "items": [
+        {
+          "language": "Spanish",
+          "level": "Native"
+        },
+        {
+          "language": "English",
+          "level": "Basic"
+        }
+      ]
+    },
+    "soft": {
+      "title": "Additional Skills",
+      "items": [
+        "Leadership",
+        "Teamwork",
+        "Problem Solving",
+        "Process Optimization",
+        "Agile Methodologies"
+      ]
+    }
+  },
+  "education": {
+    "title": "Education",
+    "degree": "Systems Analyst",
+    "institution": "Instituto Leibnitz",
+    "period": "Mar 2022 - Mar 2025",
+    "location": "Villa María, Córdoba, Argentina",
+    "description": "Training in software development, API integration, databases, and agile methodologies."
+  },
+  "certifications": {
+    "title": "Certifications",
+    "items": [
+      {
+        "name": "Backend Development",
+        "date": "Jun 2022"
+      },
+      {
+        "name": "Oracle Cloud Infrastructure AI",
+        "date": "Jan 2025"
+      },
+      {
+        "name": "Development with Artificial Intelligence",
+        "date": "Jul 2024"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Interested in working together? Let's talk!",
+    "email": "fransayago04@gmail.com",
+    "phone": "+54 3534060236",
+    "location": "Córdoba, Argentina",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/francisco-sayago/",
+      "github": "https://github.com/Fransaya"
+    },
+    "cta": "Send message"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "built": "Built with",
+    "and": "and"
+  }
+}

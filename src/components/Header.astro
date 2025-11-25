@@ -1,0 +1,223 @@
+---
+import type { Locale } from '@utils/i18n';
+
+interface Props {
+  locale?: Locale;
+  t: any;
+}
+
+const { locale = 'es', t } = Astro.props;
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href={locale === 'es' ? '/' : '/en'} class="logo">
+        <span class="logo-text gradient-text">FS</span>
+      </a>
+      
+      <div class="nav-links">
+        <a href="#about">{t.nav.about}</a>
+        <a href="#experience">{t.nav.experience}</a>
+        <a href="#skills">{t.nav.skills}</a>
+        <a href="#education">{t.nav.education}</a>
+        <a href="#contact">{t.nav.contact}</a>
+      </div>
+      
+      <div class="nav-controls">
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+          <button 
+            data-lang="es" 
+            class={`lang-btn ${locale === 'es' ? 'active' : ''}`}
+            aria-label="Español"
+          >
+            ES
+          </button>
+          <button 
+            data-lang="en" 
+            class={`lang-btn ${locale === 'en' ? 'active' : ''}`}
+            aria-label="English"
+          >
+            EN
+          </button>
+        </div>
+        
+        <!-- Theme Toggle -->
+        <button 
+          data-theme-toggle 
+          class="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          <span data-theme-icon>🌙</span>
+        </button>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all var(--transition-base);
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+    gap: var(--space-md);
+  }
+  
+  .logo {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    font-family: var(--font-display);
+    text-decoration: none;
+    transition: transform var(--transition-fast);
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .logo-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  
+  .nav-links a {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    position: relative;
+    transition: color var(--transition-fast);
+  }
+  
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width var(--transition-base);
+  }
+  
+  .nav-links a:hover {
+    color: var(--color-text-primary);
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  
+  .lang-toggle {
+    display: flex;
+    gap: 4px;
+    background: var(--color-bg-tertiary);
+    padding: 4px;
+    border-radius: var(--radius-lg);
+  }
+  
+  .lang-btn {
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+  
+  .lang-btn:hover {
+    color: var(--color-text-primary);
+  }
+  
+  .lang-btn.active {
+    background: var(--color-bg-secondary);
+    color: var(--color-accent-primary);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-lg);
+    transition: all var(--transition-fast);
+  }
+  
+  .theme-toggle:hover {
+    background: var(--color-bg-secondary);
+    transform: scale(1.05);
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  
+  .mobile-menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: flex;
+    }
+  }
+</style>

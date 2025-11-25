@@ -1,0 +1,50 @@
+---
+interface Props {
+  t: any;
+  locale?: 'es' | 'en';
+}
+
+const { t, locale = 'es' } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <p class="footer-text">
+        © {currentYear} Francisco Sayago. {t.footer.rights}.
+      </p>
+      
+      <p class="footer-tech">
+        {t.footer.built} <span class="gradient-text">Astro</span> {t.footer.and} <span class="gradient-text">TypeScript</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-bg-secondary);
+    border-top: 1px solid var(--glass-border);
+    padding: var(--space-xl) 0;
+  }
+  
+  .footer-content {
+    text-align: center;
+  }
+  
+  .footer-text {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .footer-tech {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+  }
+  
+  .footer-tech .gradient-text {
+    font-weight: 600;
+  }
+</style>

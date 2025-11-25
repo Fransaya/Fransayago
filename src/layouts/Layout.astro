@@ -1,0 +1,60 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  locale?: 'es' | 'en';
+}
+
+const { 
+  title = 'Francisco Sayago - Full Stack Developer',
+  description = 'Full Stack Developer especializado en Node.js, React y Next.js. Creando aplicaciones web escalables y de alto rendimiento.',
+  locale = 'es'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Francisco Enrique Sayago" />
+    <meta name="keywords" content="Full Stack Developer, Node.js, React, Next.js, TypeScript, PostgreSQL, MongoDB, Web Development" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={locale === 'es' ? 'es_AR' : 'en_US'} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    
+    <!-- Scripts -->
+    <script>
+      import '@scripts/theme.ts';
+      import '@scripts/language.ts';
+      import '@scripts/animations.ts';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

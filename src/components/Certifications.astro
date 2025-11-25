@@ -1,0 +1,84 @@
+---
+interface Props {
+  t: any;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="certifications section" id="certifications">
+  <div class="container">
+    <h2 class="section-title reveal">{t.certifications.title}</h2>
+    
+    <div class="certifications-grid">
+      {t.certifications.items.map((cert: any) => (
+        <div class="cert-card glass reveal">
+          <div class="cert-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </div>
+          <h3 class="cert-name">{cert.name}</h3>
+          <p class="cert-date">{cert.date}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .certifications {
+    background: var(--color-bg-secondary);
+  }
+  
+  .certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .cert-card {
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    transition: all var(--transition-base);
+  }
+  
+  .cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .cert-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-xl);
+    color: white;
+  }
+  
+  .cert-name {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .cert-date {
+    font-size: var(--text-sm);
+    color: var(--color-accent-primary);
+    font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    .certifications-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

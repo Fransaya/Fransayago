@@ -1,0 +1,171 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "education": "Educación",
+    "certifications": "Certificaciones",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Francisco Enrique Sayago",
+    "title": "Full Stack Developer",
+    "subtitle": "Construyendo aplicaciones web escalables y de alto rendimiento",
+    "cta": {
+      "contact": "Contáctame",
+      "resume": "Ver CV"
+    }
+  },
+  "about": {
+    "title": "Sobre mí",
+    "summary": "Desarrollador Full Stack con más de 2 años de experiencia creando aplicaciones web escalables. Especializado en la construcción de APIs de alto rendimiento con Node.js y en interfaces modernas con React y Next.js. Sólida experiencia en optimización de bases de datos, arquitectura de microservicios y despliegues con Docker. Integré soluciones de IA (ChatGPT) para automatizar procesos y mejorar la eficiencia operativa.",
+    "stats": {
+      "experience": "2+ Años",
+      "experienceLabel": "Experiencia",
+      "projects": "15+",
+      "projectsLabel": "Proyectos",
+      "performance": "40%",
+      "performanceLabel": "Mejora en Performance"
+    }
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "jobs": [
+      {
+        "company": "Omnia",
+        "position": "Full Stack Developer",
+        "period": "Ene 2024 - Nov 2025",
+        "location": "Córdoba, Argentina",
+        "achievements": [
+          "Liderazgo técnico y desarrollo de soluciones de software",
+          "Diseño y arquitectura de plataformas E-commerce con Next.js y microservicios en Node.js",
+          "Reducción del 40% de latencia en APIs, soportando +3.000 solicitudes por hora",
+          "Optimización de consultas en PostgreSQL y MongoDB, logrando +35% de rendimiento",
+          "Implementación de automatizaciones con ChatGPT, disminuyendo tiempos operativos en un 30%"
+        ]
+      },
+      {
+        "company": "Maser Informática",
+        "position": "Backend Developer",
+        "period": "Oct 2023 - Jun 2025",
+        "location": "Córdoba, Argentina",
+        "achievements": [
+          "Optimización de sistemas E-commerce de alto tráfico",
+          "Refactorización de endpoints en Node.js para mejorar el rendimiento en picos de carga",
+          "Mejora de consultas SQL, aumentando la escalabilidad en un 35%",
+          "Aplicación de patrones MVC y principios SOLID en el desarrollo backend"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "categories": {
+      "frontend": {
+        "title": "Frontend",
+        "items": [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "JavaScript",
+          "HTML5",
+          "CSS3",
+          "TailwindCSS"
+        ]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": ["Node.js", "Express.js", "Nest.js", "REST APIs", "GraphQL"]
+      },
+      "database": {
+        "title": "Bases de Datos",
+        "items": [
+          "PostgreSQL",
+          "MongoDB",
+          "MySQL",
+          "Supabase",
+          "Redis",
+          "Prisma"
+        ]
+      },
+      "tools": {
+        "title": "Herramientas",
+        "items": ["Docker", "Git", "GitHub", "Postman", "SCRUM"]
+      },
+      "ai": {
+        "title": "Inteligencia Artificial",
+        "items": ["ChatGPT API", "Claude API", "LLMs"]
+      },
+      "principles": {
+        "title": "Principios",
+        "items": ["SOLID", "MVC", "Microservicios"]
+      }
+    },
+    "languages": {
+      "title": "Idiomas",
+      "items": [
+        {
+          "language": "Español",
+          "level": "Nativo"
+        },
+        {
+          "language": "Inglés",
+          "level": "Básico"
+        }
+      ]
+    },
+    "soft": {
+      "title": "Habilidades Adicionales",
+      "items": [
+        "Liderazgo",
+        "Trabajo en equipo",
+        "Resolución de problemas",
+        "Optimización de procesos",
+        "Metodologías ágiles"
+      ]
+    }
+  },
+  "education": {
+    "title": "Educación",
+    "degree": "Analista de Sistemas",
+    "institution": "Instituto Leibnitz",
+    "period": "Mar 2022 - Mar 2025",
+    "location": "Villa María, Córdoba, Argentina",
+    "description": "Formación en desarrollo de software, integración de APIs, bases de datos y metodologías ágiles."
+  },
+  "certifications": {
+    "title": "Certificaciones",
+    "items": [
+      {
+        "name": "Desarrollo Backend",
+        "date": "Jun 2022"
+      },
+      {
+        "name": "Oracle Cloud Infrastructure AI",
+        "date": "Ene 2025"
+      },
+      {
+        "name": "Desarrollo con Inteligencia Artificial",
+        "date": "Jul 2024"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Interesado en trabajar juntos? ¡Hablemos!",
+    "email": "fransayago04@gmail.com",
+    "phone": "+54 3534060236",
+    "location": "Córdoba, Argentina",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/francisco-sayago/",
+      "github": "https://github.com/Fransaya"
+    },
+    "cta": "Enviar mensaje"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "built": "Construido con",
+    "and": "y"
+  }
+}
