@@ -14,7 +14,7 @@
     "subtitle": "Construyendo aplicaciones web escalables y de alto rendimiento",
     "cta": {
       "contact": "Contáctame",
-      "resume": "Ver CV"
+      "resume": "Descargar CV"
     }
   },
   "about": {
@@ -126,7 +126,7 @@
         },
         {
           "language": "Inglés",
-          "level": "Básico"
+          "level": "Profesional"
         }
       ]
     },
@@ -145,7 +145,7 @@
     "title": "Educación",
     "degree": "Analista de Sistemas",
     "institution": "Instituto Leibnitz",
-    "period": "Mar 2022 - Mar 2025",
+    "period": "Mar 2022 - Nov 2025",
     "location": "Villa María, Córdoba, Argentina",
     "description": "Formación en desarrollo de software, integración de APIs, bases de datos y metodologías ágiles."
   },

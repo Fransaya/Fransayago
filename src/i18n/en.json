@@ -14,7 +14,7 @@
     "subtitle": "Building scalable, high-performance web applications",
     "cta": {
       "contact": "Contact Me",
-      "resume": "View Resume"
+      "resume": "Download CV"
     }
   },
   "about": {
@@ -126,7 +126,7 @@
         },
         {
           "language": "English",
-          "level": "Basic"
+          "level": "Professional"
         }
       ]
     },
@@ -145,7 +145,7 @@
     "title": "Education",
     "degree": "Systems Analyst",
     "institution": "Instituto Leibnitz",
-    "period": "Mar 2022 - Mar 2025",
+    "period": "Mar 2022 - Nov 2025",
     "location": "Villa María, Córdoba, Argentina",
     "description": "Training in software development, API integration, databases, and agile methodologies."
   },
