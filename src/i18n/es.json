@@ -67,6 +67,7 @@
         "items": [
           "React.js",
           "Next.js",
+          "Angular +15",
           "TypeScript",
           "JavaScript",
           "HTML5",
@@ -76,7 +77,14 @@
       },
       "backend": {
         "title": "Backend",
-        "items": ["Node.js", "Express.js", "Nest.js", "REST APIs", "GraphQL"]
+        "items": [
+          "Node.js",
+          "Express.js",
+          "Nest.js",
+          "REST APIs",
+          "GraphQL",
+          "WebSockets"
+        ]
       },
       "database": {
         "title": "Bases de Datos",
@@ -91,7 +99,14 @@
       },
       "tools": {
         "title": "Herramientas",
-        "items": ["Docker", "Git", "GitHub", "Postman", "SCRUM"]
+        "items": [
+          "Docker",
+          "Git",
+          "GitHub",
+          "Postman",
+          "SCRUM",
+          "Google Cloud Platform"
+        ]
       },
       "ai": {
         "title": "Inteligencia Artificial",
