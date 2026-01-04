@@ -1,0 +1,292 @@
+---
+import '../styles/design-system.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Fran Sayago - Full Stack Developer & AI Consultant. Creating premium digital experiences with modern web technologies." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="lenis dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Fran Sayago" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Fonts - Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Reduce Motion Check -->
+    <script is:inline>
+      // Check for reduced motion preference
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduce-motion');
+      }
+    </script>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Loading Screen -->
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loader-content">
+            <div class="text-neural font-mono text-sm uppercase tracking-[0.3em] mb-4">
+                <span class="loader-text">&lt;INITIALIZING /&gt;</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-bar-fill" id="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Noise Overlay for texture -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+    
+    <!-- Gradient Background -->
+    <div class="gradient-bg" aria-hidden="true"></div>
+    
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor" aria-hidden="true"></div>
+    
+    <!-- Cursor Trail Elements -->
+    <div id="cursor-trail" aria-hidden="true"></div>
+    
+    <!-- Main Content -->
+    <main id="main-content">
+        <slot />
+    </main>
+    
+    <!-- Scripts -->
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import * as THREE from 'three';
+      import Lenis from 'lenis';
+      
+      // Register GSAP plugins
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Make available globally for inline scripts
+      (window as any).gsap = gsap;
+      (window as any).ScrollTrigger = ScrollTrigger;
+      (window as any).THREE = THREE;
+      (window as any).Lenis = Lenis;
+      
+      // ============================================
+      // 🌊 SMOOTH SCROLL (LENIS)
+      // ============================================
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+      
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      
+      requestAnimationFrame(raf);
+      
+      // Update ScrollTrigger on scroll
+      lenis.on('scroll', ScrollTrigger.update);
+      
+      gsap.ticker.add((time: number) => {
+        lenis.raf(time * 1000);
+      });
+      
+      gsap.ticker.lagSmoothing(0);
+      
+      // Make lenis available globally
+      (window as any).lenis = lenis;
+      
+      // ============================================
+      // 🎯 CUSTOM CURSOR
+      // ============================================
+      const cursor = document.getElementById('cursor');
+      const cursorTrailContainer = document.getElementById('cursor-trail');
+      
+      // Only enable custom cursor on desktop
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const hasTouch = 'ontouchstart' in window;
+      
+      if (!isMobile && !hasTouch && cursor) {
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        
+        // Cursor trail particles
+        const trailCount = 5;
+        const trails: { el: HTMLDivElement; x: number; y: number }[] = [];
+        
+        if (cursorTrailContainer) {
+          for (let i = 0; i < trailCount; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.opacity = String((1 - i / trailCount) * 0.3);
+            trail.style.width = `${8 - i}px`;
+            trail.style.height = `${8 - i}px`;
+            cursorTrailContainer.appendChild(trail);
+            trails.push({ el: trail, x: 0, y: 0 });
+          }
+        }
+        
+        // Mouse move handler
+        document.addEventListener('mousemove', (e: MouseEvent) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+        
+        // Cursor animation loop
+        function animateCursor() {
+          const speed = 0.15;
+          
+          cursorX += (mouseX - cursorX) * speed;
+          cursorY += (mouseY - cursorY) * speed;
+          
+          if (cursor) {
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+          }
+          
+          // Animate trails
+          let prevX = cursorX, prevY = cursorY;
+          trails.forEach((trail, i) => {
+            const trailSpeed = 0.1 - i * 0.015;
+            trail.x += (prevX - trail.x) * trailSpeed;
+            trail.y += (prevY - trail.y) * trailSpeed;
+            trail.el.style.left = `${trail.x}px`;
+            trail.el.style.top = `${trail.y}px`;
+            prevX = trail.x;
+            prevY = trail.y;
+          });
+          
+          requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+        
+        // Hover effects
+        const interactiveElements = document.querySelectorAll('a, button, [data-cursor="hover"]');
+        interactiveElements.forEach(el => {
+          el.addEventListener('mouseenter', () => cursor?.classList.add('cursor-hover'));
+          el.addEventListener('mouseleave', () => cursor?.classList.remove('cursor-hover'));
+        });
+        
+        // Text cursor
+        const textElements = document.querySelectorAll('input, textarea, [data-cursor="text"]');
+        textElements.forEach(el => {
+          el.addEventListener('mouseenter', () => cursor?.classList.add('cursor-text'));
+          el.addEventListener('mouseleave', () => cursor?.classList.remove('cursor-text'));
+        });
+        
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => cursor?.classList.add('cursor-hidden'));
+        document.addEventListener('mouseenter', () => cursor?.classList.remove('cursor-hidden'));
+      } else {
+        // Remove cursor elements on mobile
+        cursor?.remove();
+        cursorTrailContainer?.remove();
+        document.body.style.cursor = 'auto';
+      }
+      
+      // ============================================
+      // ⏳ LOADING ANIMATION
+      // ============================================
+      const loader = document.getElementById('loader');
+      const loaderProgress = document.getElementById('loader-progress');
+      
+      let progress = 0;
+      const loadingInterval = setInterval(() => {
+        progress += Math.random() * 30;
+        if (progress > 100) progress = 100;
+        if (loaderProgress) {
+          loaderProgress.style.width = `${progress}%`;
+        }
+        if (progress === 100) {
+          clearInterval(loadingInterval);
+          setTimeout(() => {
+            loader?.classList.add('loaded');
+            // Trigger initial animations after loader
+            document.dispatchEvent(new CustomEvent('pageLoaded'));
+          }, 300);
+        }
+      }, 100);
+      
+      // ============================================
+      // 🎬 SCROLL REVEAL ANIMATIONS
+      // ============================================
+      document.addEventListener('pageLoaded', () => {
+        // Query all reveal elements
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        
+        revealElements.forEach((el) => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            onEnter: () => el.classList.add('revealed'),
+            once: true
+          });
+        });
+        
+        // Split text animations
+        const splitTextElements = document.querySelectorAll('.split-text');
+        splitTextElements.forEach(el => {
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            onEnter: () => el.classList.add('revealed'),
+            once: true
+          });
+        });
+      });
+      
+      // Smooth scroll to anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) {
+              lenis.scrollTo(target as HTMLElement, {
+                offset: 0,
+                duration: 1.5,
+              });
+            }
+          }
+        });
+      });
+    </script>
+</body>
+</html>
