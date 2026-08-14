@@ -1,0 +1,66 @@
+---
+import { ui, capabilities, type Lang } from "../data/content";
+import { t } from "../lib/i18n";
+import SectionHead from "./SectionHead.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = ui.sections.capabilities;
+---
+
+<section id="capabilities" class="band">
+  <div class="shell">
+    <SectionHead
+      index={s.index}
+      label={t(s.label, lang)}
+      title={t(s.title, lang)}
+      lead={t(s.lead, lang)}
+      aside={t(s.aside, lang)}
+    />
+
+    <ul class="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
+      {
+        capabilities.map((c, i) => (
+          <li class="card reveal" data-delay={i * 70}>
+            <span class="card__k">{c.k}</span>
+            <h3 class="t-h3">{t(c.title, lang)}</h3>
+            <p class="text-sm leading-relaxed text-ink-soft">{t(c.body, lang)}</p>
+
+            <p class="mt-auto flex items-start gap-2 border-t border-line pt-4 text-sm text-ink">
+              <span class="dot mt-2" aria-hidden="true" />
+              <span class="t-num">{t(c.proof, lang)}</span>
+            </p>
+
+            <ul class="flex flex-wrap gap-1.5">
+              {c.tools.map((tool) => (
+                <li class="tag" translate="no">
+                  {tool}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+
+      <li class="card reveal justify-center bg-signal-wash" data-delay="350">
+        <p class="t-h3">
+          {
+            lang === "es"
+              ? "¿Tu problema no está en la lista?"
+              : "Your problem isn't on the list?"
+          }
+        </p>
+        <p class="text-sm text-ink-soft">
+          {
+            lang === "es"
+              ? "Casi nunca lo está. Contámelo y te digo en 24 h si puedo resolverlo, y cómo."
+              : "It rarely is. Tell me about it and within 24h I'll say whether I can solve it, and how."
+          }
+        </p>
+        <a href="#contact" class="btn mt-2 self-start">{lang === "es" ? "Contame" : "Tell Me"}</a>
+      </li>
+    </ul>
+  </div>
+</section>

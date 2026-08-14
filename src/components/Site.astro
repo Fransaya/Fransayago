@@ -1,0 +1,30 @@
+---
+import type { Lang } from "../data/content";
+import Nav from "./Nav.astro";
+import Hero from "./Hero.astro";
+import Capabilities from "./Capabilities.astro";
+import Impact from "./Impact.astro";
+import Method from "./Method.astro";
+import Cases from "./Cases.astro";
+import Path from "./Path.astro";
+import Toolbox from "./Toolbox.astro";
+import Contact from "./Contact.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<Nav lang={lang} />
+
+<main id="main">
+  <Hero lang={lang} />
+  <Capabilities lang={lang} />
+  <Impact lang={lang} />
+  <Method lang={lang} />
+  <Cases lang={lang} />
+  <Path lang={lang} />
+  <Toolbox lang={lang} />
+  <Contact lang={lang} />
+</main>
