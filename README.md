@@ -1,43 +1,46 @@
-# Astro Starter Kit: Minimal
+# fransayago.dev — portfolio
 
-```sh
-npm create astro@latest -- --template minimal
+Portfolio de Francisco Sayago (AI Engineer & Full Stack Developer).
+Editorial, bilingüe (ES/EN), estático, sin frameworks de UI.
+
+## Stack
+
+- **Astro 5** — dos rutas estáticas: `/` (ES) y `/en/` (EN)
+- **Tailwind v4** — tokens propios en `src/styles/tokens.css` (`@theme inline` sobre variables CSS que cambian con `[data-theme]`)
+- **GSAP + ScrollTrigger** — reveals, contadores y tipografía cinética (ejes `wght`/`wdth` de Archivo)
+- **Lenis** — scroll suave (desactivado con `prefers-reduced-motion`)
+- **Canvas 2D propio** — campo de señales del hero (`src/lib/hero-field.ts`), sin librerías
+
+## Estructura
+
+```
+src/
+├── data/content.ts        # TODO el contenido, ES + EN (única fuente de verdad)
+├── layouts/Layout.astro   # head, SEO, JSON-LD, tema, boot de motion
+├── lib/
+│   ├── motion.ts          # Lenis, reveals, kinetic type, contadores, section spy
+│   ├── hero-field.ts      # canvas del hero
+│   └── i18n.ts            # helper t()
+├── components/            # Nav, Hero, Capabilities, Impact, Method, Cases, Path, Toolbox, Contact
+└── pages/
+    ├── index.astro        # ES
+    └── en/index.astro     # EN
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Para editar textos, métricas, casos o experiencia: **`src/data/content.ts`**. Los componentes no tienen copy hardcodeado (salvo microcopy puntual).
 
-## 🚀 Project Structure
+## Comandos
 
-Inside of your Astro project, you'll see the following folders and files:
+| Comando           | Acción                              |
+| :---------------- | :---------------------------------- |
+| `npm install`     | Instala dependencias                |
+| `npm run dev`     | Dev server en `localhost:4321`      |
+| `npm run build`   | Build estático en `./dist/`         |
+| `npm run preview` | Preview del build                   |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Accesibilidad y motion
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Skip link, foco visible en todo elemento interactivo, headings jerárquicos.
+- Casos en `<dialog>` nativo (Escape, backdrop, deep link `#case-<id>`).
+- Todo el movimiento respeta `prefers-reduced-motion`; sin JS, el contenido se ve igual (fallback en `<noscript>`).
+- Tema claro/oscuro con preferencia del sistema + toggle persistido en `localStorage`.

@@ -1,0 +1,113 @@
+---
+import { ui, jobs, education, certifications, languages, profile, type Lang } from "../data/content";
+import { t } from "../lib/i18n";
+import SectionHead from "./SectionHead.astro";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = ui.sections.path;
+---
+
+<section id="path" class="band bg-sunk">
+  <div class="shell">
+    <SectionHead
+      index={s.index}
+      label={t(s.label, lang)}
+      title={t(s.title, lang)}
+      lead={t(s.lead, lang)}
+      aside={t(s.aside, lang)}
+    />
+
+    <div class="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-16">
+      <ol class="tl flex flex-col gap-10">
+        {
+          jobs.map((job, i) => (
+            <li class="tl__node reveal relative" data-current={String(job.current)} data-delay={i * 80}>
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 class="t-h3">{job.company}</h3>
+                {job.current && (
+                  <span class="tag border-signal text-signal">
+                    <span class="dot" aria-hidden="true" />
+                    {lang === "es" ? "Actual" : "Current"}
+                  </span>
+                )}
+              </div>
+              <p class="t-mono mt-1">
+                {t(job.role, lang)} · {t(job.place, lang)}
+              </p>
+              <p class="t-mono t-num mt-1 text-ink-soft">{t(job.period, lang)}</p>
+
+              <ul class="mt-4 flex flex-col gap-2">
+                {t(job.bullets, lang).map((b) => (
+                  <li class="grid grid-cols-[1.25rem_minmax(0,1fr)] items-start text-sm text-ink-soft">
+                    <span class="text-signal" aria-hidden="true">
+                      ▸
+                    </span>
+                    <span class="t-num">{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+
+      <aside class="flex flex-col gap-8">
+        <figure class="reveal m-0 border border-line bg-bg">
+          <picture>
+            <source srcset="/profile.webp" type="image/webp" />
+            <img
+              src="/profile-1000.jpg"
+              alt={lang === "es" ? "Retrato de Francisco Sayago" : "Portrait of Francisco Sayago"}
+              width="1000"
+              height="955"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/3] w-full object-cover grayscale transition-[filter] duration-500 hover:grayscale-0"
+            />
+          </picture>
+          <figcaption class="t-mono border-t border-line p-4">
+            {t(profile.location, lang)} · {lang === "es" ? "trabajo remoto" : "remote work"}
+          </figcaption>
+        </figure>
+
+        <div class="reveal border border-line bg-bg p-6">
+          <h3 class="t-mono mb-4 text-ink">{t(s.education, lang)}</h3>
+          <p class="font-display text-xl font-bold">{t(education.title, lang)}</p>
+          <p class="t-mono mt-1">{education.school} · {t(education.place, lang)}</p>
+          <p class="mt-2 text-sm text-ink-soft">{t(education.note, lang)}</p>
+        </div>
+
+        <div class="reveal border border-line bg-bg p-6" data-delay="80">
+          <h3 class="t-mono mb-4 text-ink">{t(s.certs, lang)}</h3>
+          <ul class="flex flex-col gap-4">
+            {
+              certifications.map((c) => (
+                <li>
+                  <p class="text-sm font-semibold">{t(c.name, lang)}</p>
+                  <p class="t-mono t-num mt-0.5">{t(c.meta, lang)}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="reveal border border-line bg-bg p-6" data-delay="140">
+          <h3 class="t-mono mb-4 text-ink">{t(s.langs, lang)}</h3>
+          <ul class="flex flex-col gap-3">
+            {
+              languages.map((l) => (
+                <li class="flex flex-wrap items-baseline gap-x-3">
+                  <span class="text-sm font-semibold">{t(l.name, lang)}</span>
+                  <span class="t-mono">{t(l.level, lang)}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
