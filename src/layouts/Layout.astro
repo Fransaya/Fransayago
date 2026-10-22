@@ -1,129 +1,25 @@
 ---
-import "../styles/tokens.css";
-import { profile, type Lang } from "../data/content";
-
-interface Props {
-  lang: Lang;
-  title: string;
-  description: string;
-}
-
+import '../styles/portfolio.css';
+import { portfolio, type Lang } from '../data/portfolio';
+interface Props { lang: Lang; title: string; description: string }
 const { lang, title, description } = Astro.props;
-
-const site = "https://fransayago.vercel.app";
-const path = lang === "es" ? "/" : "/en/";
-const canonical = `${site}${path}`;
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.fullName,
-  alternateName: profile.name,
-  jobTitle: "AI Engineer & Full Stack Developer",
-  email: `mailto:${profile.email}`,
-  url: canonical,
-  address: { "@type": "PostalAddress", addressLocality: "Villa María", addressRegion: "Córdoba", addressCountry: "AR" },
-  sameAs: [profile.linkedin, profile.github],
-  knowsAbout: [
-    "AI agents",
-    "Prompt engineering",
-    "Full stack development",
-    "Data engineering",
-    "Legacy modernization",
-    "Software architecture",
-  ],
-};
+const p = portfolio[lang];
+const site = 'https://fransayago.vercel.app';
+const canonical = `${site}${lang === 'es' ? '/' : '/en/'}`;
+const jsonLd = { '@context': 'https://schema.org', '@type': 'Person', name: 'Francisco Enrique Sayago', alternateName: 'Francisco Sayago', jobTitle: 'Full Stack Developer', email: `mailto:${p.contact.email}`, url: canonical, sameAs: [p.contact.linkedin, p.contact.github], address: { '@type': 'PostalAddress', addressLocality: 'Villa María', addressRegion: 'Córdoba', addressCountry: 'AR' }, knowsAbout: ['Full stack development', 'Backend development', 'AI agents', 'PostgreSQL', 'Software architecture'] };
 ---
-
 <!doctype html>
-<html lang={lang} data-theme="light">
+<html lang={lang}>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="author" content={profile.fullName} />
-    <meta name="theme-color" content="#f2efe9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0d0d0e" media="(prefers-color-scheme: dark)" />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="es" href={`${site}/`} />
-    <link rel="alternate" hreflang="en" href={`${site}/en/`} />
-    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
-
-    <meta property="og:type" content="profile" />
-    <meta property="og:locale" content={lang === "es" ? "es_AR" : "en_US"} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={`${site}/profile-1000.jpg`} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${site}/profile-1000.jpg`} />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400..600&display=swap"
-    />
-
-    <script is:inline>
-      // Theme before first paint — no flash.
-      (() => {
-        const stored = localStorage.getItem("theme");
-        const system = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.dataset.theme = stored === "light" || stored === "dark" ? stored : system;
-      })();
-    </script>
-
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
-
-    <noscript>
-      <style>
-        .reveal,
-        .line-mask > span,
-        [data-hero-fade] {
-          opacity: 1 !important;
-          transform: none !important;
-        }
-      </style>
-    </noscript>
+    <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{title}</title><meta name="description" content={description}/><meta name="author" content="Francisco Sayago"/><meta name="theme-color" content="#f5f4ee"/>
+    <link rel="canonical" href={canonical}/><link rel="alternate" hreflang="es" href={`${site}/`}/><link rel="alternate" hreflang="en" href={`${site}/en/`}/><link rel="alternate" hreflang="x-default" href={`${site}/`}/>
+    <meta property="og:type" content="website"/><meta property="og:locale" content={lang === 'es' ? 'es_AR' : 'en_US'}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:image" content={`${site}/social-cover.png`}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Francisco Sayago — Full Stack Developer · Backend & AI Agents"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={`${site}/social-cover.png`}/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)}/>
+    <noscript><style>.case-trigger{display:none!important}.case-dialog{display:block;position:static;width:min(740px,calc(100% - 32px));max-height:none;margin:32px auto}.dialog-header form{display:none}</style></noscript>
   </head>
-
-  <body>
-    <a class="skip-link" href="#main">
-      {lang === "es" ? "Saltar al contenido" : "Skip to content"}
-    </a>
-
-    <div class="grain" aria-hidden="true"></div>
-
-    <div class="fixed inset-x-0 top-0 z-50 h-[2px] bg-transparent" aria-hidden="true">
-      <div data-progress class="h-full origin-left scale-x-0 bg-signal will-change-transform"></div>
-    </div>
-
-    <slot />
-
-    <script>
-      import { initMotion } from "../lib/motion";
-
-      const boot = () => initMotion();
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", boot, { once: true });
-      } else {
-        boot();
-      }
-
-      // Theme toggle
-      const toggle = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
-      toggle?.addEventListener("click", () => {
-        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        document.documentElement.dataset.theme = next;
-        localStorage.setItem("theme", next);
-        toggle.setAttribute("aria-pressed", String(next === "dark"));
-      });
-    </script>
-  </body>
+  <body><a class="skip-link" href="#main">{p.ui.skipToContent}</a><slot/></body>
 </html>
