@@ -1,46 +1,36 @@
-# fransayago.dev — portfolio
+# Francisco Sayago — portfolio
 
-Portfolio de Francisco Sayago (AI Engineer & Full Stack Developer).
-Editorial, bilingüe (ES/EN), estático, sin frameworks de UI.
+Portfolio profesional bilingüe, construido con Astro y CSS propio.
 
-## Stack
+## Desarrollo
 
-- **Astro 5** — dos rutas estáticas: `/` (ES) y `/en/` (EN)
-- **Tailwind v4** — tokens propios en `src/styles/tokens.css` (`@theme inline` sobre variables CSS que cambian con `[data-theme]`)
-- **GSAP + ScrollTrigger** — reveals, contadores y tipografía cinética (ejes `wght`/`wdth` de Archivo)
-- **Lenis** — scroll suave (desactivado con `prefers-reduced-motion`)
-- **Canvas 2D propio** — campo de señales del hero (`src/lib/hero-field.ts`), sin librerías
+Requiere Node.js 24 (configurado en `package.json`).
+
+- `npm install`
+- `npm run dev` — http://localhost:4321
+- `npm run build` — genera `dist/`
+- `npm run preview` — sirve el build de producción
 
 ## Estructura
 
-```
-src/
-├── data/content.ts        # TODO el contenido, ES + EN (única fuente de verdad)
-├── layouts/Layout.astro   # head, SEO, JSON-LD, tema, boot de motion
-├── lib/
-│   ├── motion.ts          # Lenis, reveals, kinetic type, contadores, section spy
-│   ├── hero-field.ts      # canvas del hero
-│   └── i18n.ts            # helper t()
-├── components/            # Nav, Hero, Capabilities, Impact, Method, Cases, Path, Toolbox, Contact
-└── pages/
-    ├── index.astro        # ES
-    └── en/index.astro     # EN
-```
+- `src/data/portfolio.ts`: textos y casos en español e inglés.
+- `src/components/Site.astro`: página y casos en diálogos nativos.
+- `src/styles/portfolio.css`: diseño, componentes y responsive.
+- `src/lib/portfolio.ts`: reveals progresivos, sección activa, diálogos y copia del email.
+- `src/layouts/Layout.astro`: SEO, metadatos sociales, fuentes y datos estructurados.
+- `src/pages/index.astro` y `src/pages/en/index.astro`: rutas ES/EN.
+- `public/`: foto, favicon, imagen social y CVs actualizados.
 
-Para editar textos, métricas, casos o experiencia: **`src/data/content.ts`**. Los componentes no tienen copy hardcodeado (salvo microcopy puntual).
+## Contenido y contacto
 
-## Comandos
+Email: **fransayago.dev@gmail.com**. La fuente de los enlaces está en `src/data/portfolio.ts`. Al cambiar el email, actualizar también los PDF descargables.
 
-| Comando           | Acción                              |
-| :---------------- | :---------------------------------- |
-| `npm install`     | Instala dependencias                |
-| `npm run dev`     | Dev server en `localhost:4321`      |
-| `npm run build`   | Build estático en `./dist/`         |
-| `npm run preview` | Preview del build                   |
+Los casos describen trabajo real en SACIA, agentes de AIAutomatiza y el proyecto independiente DoctaInnova. Los gráficos son esquemas ilustrativos, no capturas del producto. No se publican datos privados ni métricas sin respaldo.
 
-## Accesibilidad y motion
+## Accesibilidad y rendimiento
 
-- Skip link, foco visible en todo elemento interactivo, headings jerárquicos.
-- Casos en `<dialog>` nativo (Escape, backdrop, deep link `#case-<id>`).
-- Todo el movimiento respeta `prefers-reduced-motion`; sin JS, el contenido se ve igual (fallback en `<noscript>`).
-- Tema claro/oscuro con preferencia del sistema + toggle persistido en `localStorage`.
+Scroll nativo; no hay dependencias JavaScript de animación. La animación respeta `prefers-reduced-motion`. El contenido se renderiza en el servidor y permanece disponible sin JavaScript; los detalles tienen fallback de lectura. Diálogos con Escape, foco contenido y devolución al botón que los abrió. Enlaces de descarga independientes por idioma.
+
+## Publicación
+
+Compatible con despliegue estático en Vercel: comando `npm run build`, directorio `dist`. El dominio canónico actual sigue siendo `https://fransayago.vercel.app`. Los cambios de esta revisión se prepararon y probaron en local; el despliegue público se realiza por separado.

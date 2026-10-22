@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fransayago.vercel.app/sitemap.xml

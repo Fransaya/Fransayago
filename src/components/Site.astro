@@ -1,30 +1,69 @@
 ---
-import type { Lang } from "../data/content";
-import Nav from "./Nav.astro";
-import Hero from "./Hero.astro";
-import Capabilities from "./Capabilities.astro";
-import Impact from "./Impact.astro";
-import Method from "./Method.astro";
-import Cases from "./Cases.astro";
-import Path from "./Path.astro";
-import Toolbox from "./Toolbox.astro";
-import Contact from "./Contact.astro";
-
-interface Props {
-  lang: Lang;
-}
+import { portfolio, type Lang } from '../data/portfolio';
+interface Props { lang: Lang }
 const { lang } = Astro.props;
+const p = portfolio[lang];
+const es = lang === 'es';
+const email = p.contact.email;
+const cv = es ? '/Francisco_Enrique_Sayago.pdf' : '/Francisco_Sayago_CV_EN.pdf';
 ---
 
-<Nav lang={lang} />
+<header class="navigation">
+  <a class="identity" href="#top" aria-label={es ? "Francisco Sayago — inicio" : "Francisco Sayago — home"}><span class="monogram">f<span>s</span>.</span><span>Francisco<br/>Sayago</span></a>
+  <nav aria-label={es ? 'Navegación principal' : 'Main navigation'}>
+    <a href="#work" data-section-link>{p.nav.work}</a><a href="#about" data-section-link>{p.nav.about}</a><a href="#contact" data-section-link>{p.nav.contact}</a>
+  </nav>
+  <div class="navigation-actions"><a class="language" href={es ? '/en/' : '/'} lang={es ? 'en' : 'es'} hreflang={es ? 'en' : 'es'} aria-label={p.ui.language}>{es ? 'EN' : 'ES'} <span aria-hidden="true">↗</span></a><a class="nav-contact" href="#contact">{es ? 'Hablemos' : "Let's talk"}<span class="icon-disc" aria-hidden="true">↗</span></a></div>
+</header>
 
 <main id="main">
-  <Hero lang={lang} />
-  <Capabilities lang={lang} />
-  <Impact lang={lang} />
-  <Method lang={lang} />
-  <Cases lang={lang} />
-  <Path lang={lang} />
-  <Toolbox lang={lang} />
-  <Contact lang={lang} />
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow hero-enter"><span class="status-dot" aria-hidden="true"></span> Francisco Sayago <span class="eyebrow-divider">/</span> Full Stack Developer</p>
+      <h1 id="hero-title" class="hero-title"><span class="title-line"><span>Full stack.</span></span><span class="title-line"><span>Backend.</span></span><span class="title-line"><em>{es ? 'IA aplicada.' : 'Applied AI.'}</em></span></h1>
+      <p class="hero-intro hero-enter">{es ? 'Soy Francisco. Desarrollo aplicaciones y agentes de IA, y me encargo de que funcionen más allá del primer deploy.' : "I'm Francisco. I build applications and AI agents, and take care of them beyond the first deployment."}</p>
+      <div class="hero-links hero-enter"><a class="button button-dark" href="#work">{p.hero.primary}<span class="icon-disc" aria-hidden="true">↘</span></a><a class="text-link" href={p.contact.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <div class="hero-visual hero-enter">
+      <div class="portrait-shell"><div class="portrait"><img src="/francisco-portrait-v2.webp" alt={es ? 'Francisco Sayago' : 'Portrait of Francisco Sayago'} width="1000" height="1000" fetchpriority="high"/><div class="portrait-caption"><span>FRANCISCO SAYAGO</span><span>CÓRDOBA · AR</span></div></div></div>
+      <div class="portrait-note"><span class="handwritten">{es ? 'Hola, soy Fran.' : "Hi, I'm Fran."}</span><svg viewBox="0 0 70 50" fill="none" aria-hidden="true"><path d="M4 5c37 0 54 5 48 32m-12-9 12 12 12-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="location-note"><span class="crosshair" aria-hidden="true">✳</span><p>Villa María, Córdoba<br/><span>{es ? 'Construyendo desde Argentina.' : 'Building from Argentina.'}</span></p></div>
+    </div>
+    <div class="hero-bottom hero-enter"><p><span class="tiny-label">{es ? 'HOY EN' : 'CURRENTLY AT'}</span><strong>AIAutomatiza</strong><span class="current-role">{es ? 'Aplicaciones, CRM & agentes de IA' : 'Applications, CRM & AI agents'}</span></p><a href="#work" class="scroll-cue"><span>{es ? 'UN POCO DE MI TRABAJO' : 'A LOOK AT MY WORK'}</span><span class="scroll-arrow" aria-hidden="true">↓</span></a></div>
+  </section>
+
+  <section id="work" class="work-section wrap section-space" aria-labelledby="work-title">
+    <div class="section-heading reveal"><div><p class="eyebrow"><span class="section-number">01 /</span> {p.work.eyebrow}</p><h2 id="work-title">{es ? 'Lo que estoy' : 'What I’m'}<br/><em>{es ? 'construyendo.' : 'building.'}</em></h2></div><p class="section-intro">{p.work.intro}</p></div>
+    <article class="featured-project project-shell reveal">
+      <div class="featured-inner">
+        <div class="project-copy"><p class="eyebrow"><span class="project-index">01</span> AIAUTOMATIZA · CRM</p><h3>SACIA<span class="title-period">.</span></h3><p class="project-summary">{es ? 'Un CRM que necesitaba espacio para crecer.' : 'A CRM that needed room to grow.'}</p><p class="project-description">{p.work.cases[0].summary}</p><ul class="project-tags">{p.work.cases[0].stack.map(item => <li>{item}</li>)}</ul><button class="case-trigger text-link" data-case="sacia" aria-haspopup="dialog">{p.ui.caseOpen}<span class="round-arrow" aria-hidden="true">↗</span></button></div>
+        <div class="sacia-art" aria-label={es ? 'Esquema del trabajo de optimización de SACIA' : 'Diagram of SACIA optimization work'}>
+          <div class="art-topline"><span class="diagram-mark">S<span> / </span></span><span>{es ? 'SISTEMA EN EVOLUCIÓN' : 'AN EVOLVING SYSTEM'}</span><span class="status-dot" aria-hidden="true"></span></div>
+          <div class="system-flow"><div class="flow-node node-client"><span class="node-symbol" aria-hidden="true">⌘</span><span>Frontend<small>{es ? 'Llamadas & tiempo real' : 'Requests & realtime'}</small></span></div><div class="flow-connection"><i></i><span>{es ? 'MENOS CARGA INNECESARIA' : 'LESS UNNECESSARY LOAD'}</span></div><div class="database-node"><svg viewBox="0 0 72 80" fill="none" aria-hidden="true"><ellipse cx="36" cy="14" rx="28" ry="10"/><path d="M8 14v44c0 5.5 12.5 10 28 10s28-4.5 28-10V14M8 36c0 5.5 12.5 10 28 10s28-4.5 28-10"/></svg><span>PostgreSQL<small>SUPABASE</small></span></div><div class="optimization-chips"><span>{es ? 'Consultas' : 'Queries'}<b>↗</b></span><span>{es ? 'Índices' : 'Indexes'}<b>↗</b></span><span>{es ? 'Funciones' : 'Functions'}<b>↗</b></span></div></div>
+          <div class="art-bottomline"><span>{es ? 'BASE DE DATOS + APLICACIÓN' : 'DATABASE + APPLICATION'}</span><span>{es ? 'Esquema técnico' : 'Technical diagram'} ↗</span></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="project-grid">
+      <article class="project-shell agent-project reveal"><div class="project-inner"><div class="agent-art" aria-hidden="true"><div class="agent-orbit orbit-one"></div><div class="agent-orbit orbit-two"></div><span class="orbit-label label-one">{es ? 'ATENCIÓN' : 'SUPPORT'}</span><span class="orbit-label label-two">{es ? 'AGENDAMIENTO' : 'SCHEDULING'}</span><span class="orbit-label label-three">{es ? 'ANÁLISIS' : 'ANALYSIS'}</span><div class="agent-core"><svg viewBox="0 0 64 64" fill="none"><path d="M32 6v52M6 32h52M13.6 13.6l36.8 36.8M13.6 50.4l36.8-36.8" stroke="currentColor" stroke-width="3"/></svg></div><span class="art-coordinate">AI / 02</span></div><div class="small-project-copy"><p class="eyebrow">02 / {es ? 'IA & AUTOMATIZACIÓN' : 'AI & AUTOMATION'}</p><h3>{es ? 'Agentes con una tarea.' : 'Agents with a purpose.'}</h3><p>{p.work.cases[1].summary}</p><div class="project-bottom"><span class="small-stack">OpenAI · Anthropic · n8n</span><button class="case-trigger round-arrow" data-case="agents" aria-haspopup="dialog" aria-label={`${p.ui.caseOpen}: ${p.work.cases[1].title}`}>↗</button></div></div></div></article>
+      <article class="project-shell mobile-project reveal"><div class="project-inner"><div class="mobile-art" aria-hidden="true"><span class="mobile-art-word">docta<br/><em>innova.</em></span><div class="private-stamp"><svg viewBox="0 0 20 20" fill="none"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V5a3 3 0 0 1 6 0v3"/></svg>{es ? 'EN DESARROLLO' : 'IN DEVELOPMENT'}</div><span class="art-coordinate">PRODUCT / 03</span></div><div class="small-project-copy"><p class="eyebrow">03 / {es ? 'PRODUCTO PROPIO' : 'INDEPENDENT PRODUCT'}</p><h3>DoctaInnova</h3><p>{p.work.cases[2].summary}</p><div class="project-bottom"><span class="small-stack">{es ? 'Mobile · Proyecto privado' : 'Mobile · Private project'}</span><button class="case-trigger round-arrow" data-case="doctainnova" aria-haspopup="dialog" aria-label={`${p.ui.caseOpen}: DoctaInnova`}>↗</button></div></div></div></article>
+    </div>
+    <p class="work-footnote reveal"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V5a3 3 0 0 1 6 0v3"/></svg>{es ? 'Parte de mi trabajo vive en repositorios privados. Acá comparto el contexto y mi contribución.' : 'Some of my work lives in private repositories. Here I share the context and my contribution.'}</p>
+  </section>
+
+  <section id="about" class="about-section section-space" aria-labelledby="about-title"><div class="wrap"><div class="about-grid"><div class="about-heading reveal"><p class="eyebrow"><span class="section-number">02 /</span> {p.about.eyebrow}</p><h2 id="about-title">{es ? 'Escribir código.' : 'Write code.'}<br/><em>{es ? 'Entender el resto.' : 'Understand the rest.'}</em></h2><div class="about-signature">Francisco Sayago<span>Full Stack Developer</span></div></div><div class="about-copy reveal">{p.about.paragraphs.map(text => <p>{text}</p>)}<a class="text-link" href={cv} download>{es ? 'Descargar mi CV' : 'Download my CV'}<span class="round-arrow" aria-hidden="true">↓</span></a></div></div>
+    <div class="experience-block reveal"><p class="eyebrow">{p.ui.experience}<span class="section-number"> / 2023—{new Date().getFullYear()}</span></p><div class="timeline">{p.about.timeline.map((job,i) => <div class="timeline-row"><span class="timeline-date">{job.period}</span><div><h3>{job.company}{i === 0 && <span class="current-tag">{es ? 'ACTUAL' : 'CURRENT'}</span>}</h3><p class="timeline-role">{job.role}</p><p class="timeline-description">{job.description}</p></div><span class="timeline-symbol" aria-hidden="true">{i === 0 ? '↗' : '+'}</span></div>)}</div></div>
+  </div></section>
+
+  <section class="stack-section wrap section-space" aria-labelledby="stack-title"><div class="stack-heading reveal"><p class="eyebrow"><span class="section-number">03 /</span> {p.ui.tools}</p><h2 id="stack-title">{es ? 'Las herramientas' : 'The tools'}<br/><em>{es ? 'del día a día.' : 'I work with.'}</em></h2><p>{es ? 'Un stack que uso para construir, integrar y mantener productos en producción.' : 'The stack I use to build, integrate, and maintain products in production.'}</p></div><div class="stack-list">{p.about.stack.map((group,i) => <div class="stack-row reveal"><span class="stack-index">0{i+1}</span><h3>{group.title}</h3><ul>{group.items.map(item => <li>{item}</li>)}</ul></div>)}</div></section>
+
+  <section id="contact" class="contact-section" aria-labelledby="contact-title"><div class="wrap"><div class="contact-top reveal"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>{es ? 'ABIERTO A CONVERSAR' : 'OPEN TO A CONVERSATION'}</p><span class="contact-location">ARGENTINA ↗ {es ? 'EL MUNDO' : 'THE WORLD'}</span></div><div class="contact-grid"><div class="reveal"><h2 id="contact-title">{es ? 'El próximo paso,' : 'The next step,'}<br/><em>{es ? 'lo charlamos.' : "let’s talk."}</em></h2><p class="contact-body">{p.contact.body}</p><a class="button button-light" href={`mailto:${email}`}>{es ? 'Escribime' : 'Get in touch'}<span class="icon-disc" aria-hidden="true">↗</span></a></div><div class="contact-details reveal"><span class="tiny-label">EMAIL</span><a href={`mailto:${email}`} class="email-address">{email.split('@')[0]}<span>@{email.split('@')[1]}</span></a><button class="copy-email" data-copy-email={email} data-copy-label={p.ui.copyEmail} data-copied-label={p.ui.emailCopied}><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M12 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h2"/></svg><span>{p.ui.copyEmail}</span></button><span data-copy-feedback class="sr-only" role="status" aria-live="polite"></span><div class="social-links"><a href={p.contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href={p.contact.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href={cv} download>CV <span aria-hidden="true">↓</span></a></div></div></div><footer><span>© {new Date().getFullYear()} Francisco Sayago</span><span class="footer-location">Villa María, Córdoba, Argentina</span><a href="#top">{p.ui.backToTop} <span aria-hidden="true">↑</span></a></footer></div><div class="footer-wordmark" aria-hidden="true">sayago<span>.</span></div></section>
 </main>
+
+{p.work.cases.map(item => <dialog class="case-dialog" id={`case-${item.id}`} aria-labelledby={`case-title-${item.id}`}><div class="dialog-inner"><div class="dialog-header"><span class="eyebrow">{item.category}</span><form method="dialog"><button class="dialog-close" aria-label={p.ui.caseClose}>×</button></form></div><h2 id={`case-title-${item.id}`}>{item.title}</h2><p class="dialog-summary">{item.summary}</p><div class="dialog-content"><section><h3>{p.ui.context}</h3><p>{item.context}</p></section><section><h3>{p.ui.contribution}</h3><ul>{item.contribution.map(line => <li>{line}</li>)}</ul></section><section class="dialog-result"><h3>{p.ui.result}</h3><p>{item.result}</p></section></div><ul class="project-tags">{item.stack.map(tool => <li>{tool}</li>)}</ul><p class="dialog-privacy">{item.privacy}</p></div></dialog>)}
+
+<script>
+  import { initPortfolio } from '../lib/portfolio';
+  initPortfolio();
+</script>
